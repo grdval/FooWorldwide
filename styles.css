@@ -1,0 +1,212 @@
+﻿:root {
+  --bg: #000000;
+  --bg-soft: #0a0a0a;
+  --panel: rgba(255,255,255,0.025);
+  --panel-strong: rgba(255,255,255,0.045);
+  --line: rgba(255,255,255,0.12);
+  --text: #f5f5f5;
+  --muted: rgba(255,255,255,0.6);
+  --red: #eb5449;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.03), transparent 28%),
+    #000;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+  padding: 30px 0 80px;
+  overflow: hidden;
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0));
+  filter: blur(28px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.left-figure { left: -25px; }
+.right-figure { right: -25px; }
+
+.roster-layout {
+  position: relative;
+  width: min(1280px, calc(100% - 60px));
+  margin: 0 auto;
+}
+
+.featured-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 18px;
+  width: min(900px, 100%);
+  margin: 10px auto 0;
+  padding-top: 8px;
+}
+
+.feature-card {
+  position: relative;
+  min-height: 260px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.015);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.card-image {
+  height: 100%;
+  min-height: 260px;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1) contrast(1.08) brightness(0.7);
+}
+
+.card-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 14px 12px;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.75));
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.82);
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 28px auto 14px;
+  color: rgba(255,255,255,0.68);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: rgba(255,255,255,0.16);
+  flex: 1;
+}
+
+.section-divider span:first-child {
+  color: var(--red);
+}
+
+.members-area {
+  padding-top: 10px;
+}
+
+.members-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 8px 0 26px;
+}
+
+.members-header h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 5vw, 5.4rem);
+  line-height: 0.82;
+  letter-spacing: -0.09em;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.94);
+}
+
+.members-header span {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: rgba(255,255,255,0.62);
+  transform: translateY(-12px);
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.member-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+  min-height: 206px;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.member-photo {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(1) contrast(1.1) brightness(0.72);
+}
+
+.member-name {
+  padding: 10px 12px 12px;
+  background: rgba(255,255,255,0.02);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(255,255,255,0.82);
+}
+
+@media (max-width: 980px) {
+  .member-grid { grid-template-columns: repeat(3, minmax(150px, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .roster-layout { width: min(100% - 20px, 100%); }
+  .featured-row { grid-template-columns: 1fr; width: 100%; }
+  .member-grid { grid-template-columns: repeat(2, minmax(140px, 1fr)); }
+  .members-header { flex-direction: column; align-items: flex-start; }
+  .members-header span { transform: none; }
+}
+
+@media (max-width: 480px) {
+  .member-grid { grid-template-columns: 1fr; }
+  .member-photo { height: 220px; }
+  .section-divider { letter-spacing: 0.18em; }
+}
